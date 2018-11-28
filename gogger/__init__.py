@@ -13,13 +13,13 @@ class Gogger(object):
 		if not os.path.exists(log_path):
 			os.mkdir(log_path)
 
-	def get_logger(self, logger_name):
+	def get_logger(self,spider_name,logger_name=None):
 		logger = logging.getLogger(logger_name)
 		formatter = logging.Formatter('%(asctime)s [%(name)s] %(levelname)s: %(message)s')
 		for i in range(self.max_level, 0, -10):
-			file_name = '{log_dir}/{log_name}_{pid}_{time}_{level}.log'.format(
+			file_name = '{log_dir}/{spider_name}_{pid}_{time}_{level}.log'.format(
 				log_dir=self.log_path,
-				log_name=logger_name,
+				spider_name=spider_name,
 				pid=os.getpid(),
 				time=datetime.datetime.now().strftime(
 					'%Y-%m-%d_%H:%M:%S'),
